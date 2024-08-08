@@ -1,0 +1,6 @@
+---
+- name: installing sofware
+  hosts: all
+  become: true
+  roles:
+    - test2
