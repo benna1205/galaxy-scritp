@@ -1,0 +1,18 @@
+- hosts: localhost #creating ec2 in the local host
+  connection: local #local connetion only
+  tasks:
+  - name: start an instance with a public IP address
+    amazon.aws.ec2_instance:
+      name: "anisinstance"
+      key_name: "apsouth"
+      vpc_subnet_id: subnet-02b4f4dedb38c458d #which subnet you used to create Instace
+      instance_type: t3.micro #instance type
+      security_group: default #any sg grou id
+      region: ap-south-1
+      aws_access_key: "{{aws_access_key}}"  # From vault as defined
+      aws_secret_key: "{{aws_secret_key}}"  # From vault as defined 
+      network:
+        assign_public_ip: true
+      image_id: ami-0ad21ae1d0696ad58 #Image id 
+      tags:
+        Environment: Testing 
